@@ -1,6 +1,7 @@
 package program;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import jdk.nashorn.internal.scripts.JO;
 import org.apache.hadoop.conf.Configuration;
@@ -49,8 +50,13 @@ public class MainProgram {
         @Override
         public void reduce(Text word, Iterable<Text> values,Context context) throws IOException, InterruptedException{
             String allValues="";
+            HashMap<String, Integer> hashMap=new HashMap<String, Integer>();
             for(Text value : values){
-                allValues+=","+value.toString();
+                if(!hashMap.containsKey(value.toString())){
+                    allValues+=","+value.toString();
+                    hashMap.put(value.toString(),1);
+                }
+
             }
             context.write(word,new Text(allValues));
         }
