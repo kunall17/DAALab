@@ -30,9 +30,9 @@ public class MainProgram {
         FileOutputFormat.setOutputPath(j,output);
         System.exit(j.waitForCompletion(true)?0:1);
     }
-    public static class MapForGroup extends Mapper<Text, Text, Text, Text>{
+    public static class MapForGroup extends Mapper<LongWritable, Text, Text, Text>{
         @Override
-        public void map(Text key,Text value, Context context)throws IOException, InterruptedException{
+        public void map(LongWritable key,Text value, Context context)throws IOException, InterruptedException{
             String line=value.toString();
             String words[]=line.split(",");
             int l=words.length;
