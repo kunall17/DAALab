@@ -39,7 +39,7 @@ public class MainProgram {
             Text outputValue=new Text(words[0]);
             if(l>1){
                 for(int i=1;i<l;i++){
-                    Text outputKey=new Text(words[i]);
+                    Text outputKey=new Text(words[i].trim());
                     context.write(outputKey,outputValue);
                 }
             }
